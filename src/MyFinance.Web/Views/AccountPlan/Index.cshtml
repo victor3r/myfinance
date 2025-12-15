@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Plano de Contas";
+}
+
+<div class="d-flex flex-column gap-3">
+    <h1>@ViewData["Title"]</h1>
+
+    <button type="button" class="align-self-start btn btn-block btn-primary">Criar item de Plano de Conta</button>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+            <th colspan="2" class="text-center">Ações</th>
+        </tr>
+
+        @foreach (var item in (List<AccountPlanModel>)ViewBag.AccountPlans)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Description</td>
+                <td>@item.Type</td>
+                <td>
+                    <button type="button" class="btn btn-block btn-outline-warning" onclick="Update(@item.Id.ToString())">Editar</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-block btn-outline-danger" onclick="Update(@item.Id.ToString())">Excluir</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    function Update(id) {
+        window.location.href = '/AccountPlan/Update/' + id;
+    }
+    function Delete(id) {
+        window.location.href = '/AccountPlan/Delete/' + id;
+    }
+    function Add() {
+        window.location.href = '/AccountPlan/Add/';
+    }
+</script>

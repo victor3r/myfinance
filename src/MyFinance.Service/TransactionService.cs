@@ -4,14 +4,11 @@ using MyFinance.Domain.Entities;
 using MyFinance.Infra;
 using MyFinance.Service.Interfaces;
 
-public class TransactionService : ITransactionService
-{
-    private readonly MyFinanceDbContext _dbContext;
+namespace MyFinance.Service;
 
-    public TransactionService(MyFinanceDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+public class TransactionService(MyFinanceDbContext dbContext) : ITransactionService
+{
+    private readonly MyFinanceDbContext _dbContext = dbContext;
 
     public async Task Add(Transaction transaction)
     {

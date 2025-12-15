@@ -4,14 +4,11 @@ using MyFinance.Domain.Entities;
 using MyFinance.Infra;
 using MyFinance.Service.Interfaces;
 
-public class AccountPlanService : IAccountPlanService
-{
-    private readonly MyFinanceDbContext _dbContext;
+namespace MyFinance.Service;
 
-    public AccountPlanService(MyFinanceDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+public class AccountPlanService(MyFinanceDbContext dbContext) : IAccountPlanService
+{
+    private readonly MyFinanceDbContext _dbContext = dbContext;
 
     public async Task Add(AccountPlan accountPlan)
     {
