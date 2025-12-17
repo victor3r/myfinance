@@ -5,7 +5,7 @@
 <div class="d-flex flex-column gap-3">
     <h1>@ViewData["Title"]</h1>
 
-    <button type="button" class="align-self-start btn btn-block btn-primary">Criar item de Plano de Conta</button>
+    <button type="button" class="align-self-start btn btn-block btn-primary" onclick="Add()">Criar item de Plano de Conta</button>
 
     <table class="table table-bordered">
         <tr>
@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-block btn-outline-warning" onclick="Update(@item.Id.ToString())">Editar</button>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-block btn-outline-danger" onclick="Update(@item.Id.ToString())">Excluir</button>
+                    <button type="button" class="btn btn-block btn-outline-danger" onclick="Delete(@item.Id.ToString())">Excluir</button>
                 </td>
             </tr>
         }
@@ -34,12 +34,12 @@
 
 <script>
     function Update(id) {
-        window.location.href = '/AccountPlan/Update/' + id;
+        window.location.href = '/accountplan/add/' + id;
     }
     function Delete(id) {
-        window.location.href = '/AccountPlan/Delete/' + id;
+        window.location.href = '/accountplan/delete/' + id;
     }
     function Add() {
-        window.location.href = '/AccountPlan/Add/';
+        window.location.href = '/accountplan/add/';
     }
 </script>

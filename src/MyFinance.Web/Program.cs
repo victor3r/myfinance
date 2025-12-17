@@ -10,6 +10,8 @@ builder.Services.AddDbContext<MyFinanceDbContext>();
 builder.Services.AddScoped<IAccountPlanService, AccountPlanService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 
+builder.Services.AddRouting(option => option.LowercaseUrls = true);
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

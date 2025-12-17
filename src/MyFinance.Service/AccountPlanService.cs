@@ -17,6 +17,7 @@ public class AccountPlanService(MyFinanceDbContext dbContext) : IAccountPlanServ
         if (accountPlan.Id is null)
         {
             await dbSet.AddAsync(accountPlan);
+            await _dbContext.SaveChangesAsync();
             return;
         }
 
