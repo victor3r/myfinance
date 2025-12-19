@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Transações Financeiras";
+}
+
+<div class="d-flex flex-column gap-3">
+    <h1>@ViewData["Title"]</h1>
+
+    <button type="button" class="align-self-start btn btn-block btn-primary" onclick="Add()">Registrar Transação</button>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Id</th>
+            <th>Histórico</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th colspan="2" class="text-center">Ações</th>
+        </tr>
+
+        @foreach (var item in (List<TransactionModel>)ViewBag.Transactions)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.History</td>
+                <td>@item.AccountPlan.Type</td>
+                <td>@item.Value</td>
+                <td>@item.Date</td>
+                <td>
+                    <button type="button" class="btn btn-block btn-outline-warning" onclick="Update(@item.Id.ToString())">Editar</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-block btn-outline-danger" onclick="Delete(@item.Id.ToString())">Excluir</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    function Update(id) {
+        window.location.href = '/transaction/add/' + id;
+    }
+    function Delete(id) {
+        window.location.href = '/transaction/delete/' + id;
+    }
+    function Add() {
+        window.location.href = '/transaction/add/';
+    }
+</script>

@@ -35,7 +35,7 @@ public class TransactionService(MyFinanceDbContext dbContext) : ITransactionServ
 
     public async Task<List<Transaction>> GetAll()
     {
-        return await _dbContext.Transaction.AsNoTracking().ToListAsync();
+        return await _dbContext.Transaction.Include(transaction => transaction.AccountPlan).AsNoTracking().ToListAsync();
     }
 
     public async Task<Transaction?> GetById(int id)
