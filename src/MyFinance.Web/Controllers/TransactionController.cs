@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyFinance.Domain.Entities;
 using MyFinance.Service.Interfaces;
 using MyFinance.Web.Models;
@@ -40,24 +40,28 @@ public class TransactionController(ILogger<AccountPlanController> logger) : Cont
     [Route("add/{id}")]
     public async Task<IActionResult> Add(
         [FromServices] ITransactionService transactionService,
+        [FromServices] IAccountPlanService accountPlanService,
         [FromRoute] int? id)
     {
+        var accountPlans = await accountPlanService.GetAll();
+
+        var model = new TransactionModel{
+            Date = DateOnly.FromDateTime(DateTime.Now),
+            AccountPlans = new SelectList(accountPlans, "Id", "Description"),
+        };
+
         if (id is not null)
         {
             var transaction = await transactionService.GetById((int)id);
 
-            return View(new TransactionModel
-            {
-                Id = transaction.Id,
-                History = transaction.History,
-                Date = transaction.Date,
-                Value = transaction.Value,
-                AccountPlanId = transaction.AccountPlanId,
-            });
+            model.Id = transaction.Id;
+            model.History = transaction.History;
+            model.Date = transaction.Date;
+            model.Value = transaction.Value;
+            model.AccountPlanId = transaction.AccountPlanId;
         }
 
-        return View();
-
+        return View(model);
     }
 
     [HttpPost]

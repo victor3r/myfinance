@@ -17,6 +17,7 @@ public class TransactionService(MyFinanceDbContext dbContext) : ITransactionServ
         if (transaction.Id is null)
         {
             await dbSet.AddAsync(transaction);
+            await _dbContext.SaveChangesAsync();
             return;
         }
 

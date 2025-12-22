@@ -1,1 +1,37 @@
-﻿
+﻿@model MyFinance.Web.Models.TransactionModel
+
+@{
+    ViewData["Title"] = "Registrar Transação Financeira";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <form asp-controller="Transaction" asp-action="Add" method="post">
+        <div class="d-flex flex-column gap-3">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group d-flex flex-column gap-3">
+                <label>Data:</label>
+                <input type="date" class="form-control" asp-for="Date" />
+            </div>
+
+            <div class="form-group d-flex flex-column gap-3">
+                <label>Valor:</label>
+                <input type="text" class="form-control" asp-for="Value" step="0.01" />
+            </div>
+
+            <div class="form-group d-flex flex-column gap-3">
+                <label>Plano de Conta:</label>
+                @Html.DropDownListFor(model => model.AccountPlanId, Model.AccountPlans, new { @class = "form-select" })
+            </div>
+
+            <div class="form-group d-flex flex-column gap-3">
+                <label>Histórico:</label>
+                <input type="text" class="form-control" asp-for="History" />
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">Registrar</button>
+        </div>
+    </form>
+</div>
