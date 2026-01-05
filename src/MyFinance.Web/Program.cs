@@ -1,4 +1,6 @@
 using MyFinance.Infra;
+using MyFinance.Infra.Interfaces;
+using MyFinance.Infra.Repositories;
 using MyFinance.Service;
 using MyFinance.Service.Interfaces;
 
@@ -9,6 +11,8 @@ builder.Services.AddDbContext<MyFinanceDbContext>();
 
 builder.Services.AddScoped<IAccountPlanService, AccountPlanService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+
+builder.Services.AddScoped<IAccountPlanRepository, AccountPlanRepository>();
 
 builder.Services.AddRouting(option => option.LowercaseUrls = true);
 

@@ -1,7 +1,9 @@
+using MyFinance.Domain.Entities.Base;
+
 namespace MyFinance.Domain.Entities;
-public class AccountPlan
+
+public class AccountPlan : BaseEntity
 {
-    public int? Id { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; }
     public char Type { get; set; }
 }

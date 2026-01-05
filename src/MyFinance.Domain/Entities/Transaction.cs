@@ -1,11 +1,12 @@
+using MyFinance.Domain.Entities.Base;
+
 namespace MyFinance.Domain.Entities;
 
-public class Transaction
+public class Transaction : BaseEntity
 {
-    public int? Id { get; set; }
-    public string History { get; set; }
+    public string? History { get; set; }
     public DateOnly Date { get; set; }
     public decimal Value { get; set; }
     public int AccountPlanId { get; set; }
-    public AccountPlan AccountPlan { get; set; }
+    public AccountPlan? AccountPlan { get; set; }
 }
